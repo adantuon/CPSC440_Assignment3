@@ -130,8 +130,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cannon.cpp" />
     <ClCompile Include="CPSC440_Assignment3.cpp" />
     <ClCompile Include="GameLogic.cpp" />
+    <ClCompile Include="Penguin.cpp" />
+    <ClCompile Include="Snowball.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

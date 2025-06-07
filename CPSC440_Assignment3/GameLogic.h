@@ -6,9 +6,13 @@
 #include <allegro5\allegro_image.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+#include "Snowball.h"
+#include "Cannon.h"
+#include "Penguin.h"
 
 class game {
 	public:
+		game(int numS, int numE);
 		game();
 		~game();
 		void drawBackground();
@@ -17,6 +21,11 @@ class game {
 		int getLives() { return lives; }
 		void removeLife() { lives--; }
 	private:
+		cannon Cannon;
+		snowball *Snowball;
+		penguin *Enemies;
+		int numSnowballs;
+		int numEnemies;
 		int score;
 		int lives;
 		ALLEGRO_BITMAP *background;
