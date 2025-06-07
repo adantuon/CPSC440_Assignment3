@@ -56,6 +56,7 @@ int main() {
 	al_register_event_source(eventQueue, al_get_keyboard_event_source());
 	al_register_event_source(eventQueue, al_get_timer_event_source(timer));
 
+	srand(time(NULL));
 	al_start_timer(timer);
 	
 	while (!exit) {

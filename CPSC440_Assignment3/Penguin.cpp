@@ -58,6 +58,7 @@ void penguin::collidePenguin(int WIDTH, int HEIGHT) {
 	
 	if (inPlay) {
 		if (y > HEIGHT) {
+			printf("Penguin removed\n");
 			inPlay = false;
 		}
 	}

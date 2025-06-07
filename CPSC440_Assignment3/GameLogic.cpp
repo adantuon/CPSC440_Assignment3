@@ -37,6 +37,9 @@ void game::runGame() {
 	for (int i = 0; i < numEnemies; i++) {
 		Enemies[i].updatePenguin();
 	}
+	for (int i = 0; i < numEnemies; i++) {
+		Enemies[i].collidePenguin(900, 900);
+	}
 }
 
 void game::drawGame() {
