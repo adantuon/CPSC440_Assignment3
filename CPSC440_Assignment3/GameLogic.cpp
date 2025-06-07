@@ -30,6 +30,19 @@ game::game(int numS, int numE) {
 	game::score = 0;
 }
 
-void game::drawBackground() {
+void game::runGame() {
+	for (int i = 0; i < numEnemies; i++) {
+		Enemies[i].startPenguin(900, 900);
+	}
+	for (int i = 0; i < numEnemies; i++) {
+		Enemies[i].updatePenguin();
+	}
+}
+
+void game::drawGame() {
 	al_draw_bitmap(background, 0, 0, 0);
+
+	for (int i = 0; i < numEnemies; i++) {
+		Enemies[i].drawPenguin();
+	}
 }

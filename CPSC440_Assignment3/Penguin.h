@@ -13,17 +13,18 @@ public:
 	void drawPenguin();
 	void startPenguin(int WIDTH, int HEIGHT);
 	void updatePenguin();
-	void collideGhost(int WIDTH, int HEIGHT);
+	void collidePenguin(int WIDTH, int HEIGHT);
 	int getBoundX() { return boundx; }
 	int getBoundY() { return boundy; }
 	int getX() { return x; }
 	int getY() { return y; }
-	bool getLive() { return live; }
-	void setLive(bool l) { live = l; }
+	bool getLive() { return inPlay; }
+	void setLive(bool l) { inPlay = l; }
 private:
 	int x;
 	int y;
-	bool live;
+	bool inPlay;
+	bool alive;
 	int speed;
 	int boundx;
 	int boundy;

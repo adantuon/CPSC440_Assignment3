@@ -15,7 +15,8 @@ class game {
 		game(int numS, int numE);
 		game();
 		~game();
-		void drawBackground();
+		void runGame();
+		void drawGame();
 		int getScore() { return score; }
 		void addScore() { score++; }
 		int getLives() { return lives; }

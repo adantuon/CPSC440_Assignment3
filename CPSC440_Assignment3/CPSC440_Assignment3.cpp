@@ -66,11 +66,13 @@ int main() {
 			exit = true;
 		}
 		else if (event.type == ALLEGRO_EVENT_TIMER) {
-			Game.drawBackground();
+			draw = true;
+			Game.runGame();
 		}
 
 		if (draw) {
 			draw = false;
+			Game.drawGame();
 
 			al_flip_display();
 		}
