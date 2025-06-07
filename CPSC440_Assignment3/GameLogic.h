@@ -1,3 +1,5 @@
+//Aiden D'Antuono
+
 #pragma once
 #include <allegro5/allegro.h>
 #include <allegro5\allegro_primitives.h>
@@ -8,6 +10,8 @@
 class game {
 	public:
 		game();
+		~game();
+		void drawBackground();
 		int getScore() { return score; }
 		void addScore() { score++; }
 		int getLives() { return lives; }
@@ -15,4 +19,5 @@ class game {
 	private:
 		int score;
 		int lives;
+		ALLEGRO_BITMAP *background;
 };

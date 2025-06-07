@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CPSC440_Assignment3.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
