@@ -37,8 +37,8 @@ game::game(int numS, int numE, ALLEGRO_FONT *f, ALLEGRO_FONT *bf) {
 	game::igloo = al_load_bitmap("BackgroundIgloo.png");
 	game::lives = 5;
 	game::score = 0;
-	game::fireDelay = 30;
-	game::fireCooldown = 30;
+	game::fireDelay = 10;
+	game::fireCooldown = 10;
 	game::lost = false;
 }
 
