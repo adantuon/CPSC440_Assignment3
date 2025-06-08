@@ -1,7 +1,6 @@
 //Aiden D'Antuono
 
 #include "Penguin.h"
-#include <stdio.h>
 
 penguin::~penguin() {
 	al_destroy_bitmap(image[0]);
@@ -16,8 +15,10 @@ penguin::penguin() {
 	penguin::alive = true;
 	penguin::speed = 2;
 
-	penguin::boundx = al_get_bitmap_width(image[0]);
-	penguin::boundy = al_get_bitmap_height(image[0]);
+	penguin::boundxl = 26;
+	penguin::boundxr = 102;
+	penguin::boundyt = 10;
+	penguin::boundyb = 117;
 }
 
 void penguin::drawPenguin() {
@@ -36,8 +37,9 @@ void penguin::startPenguin(int WIDTH, int HEIGHT) {
 	if (!inPlay) {
 		if (rand() % 500 == 0) {
 			inPlay = true;
-			x = rand() % (HEIGHT - boundx);
-			y = 0 - boundy;
+			alive = true;
+			x = rand() % ((WIDTH - (al_get_bitmap_width(image[0]) - boundxl)) + boundxl + 1) - boundxl;
+			y = 0 - boundyb;
 		}
 	}
 }
@@ -54,12 +56,18 @@ void penguin::updatePenguin() {
 	}
 }
 
-void penguin::collidePenguin(int WIDTH, int HEIGHT) {
+bool penguin::collidePenguin(int WIDTH, int HEIGHT) {
 	
 	if (inPlay) {
+		if (alive) {
+			if ((x + boundxl) >= 90 && (x + boundxr) <= 800 && (y + boundyb) > 765) {
+				inPlay = false;
+				return true;
+			}
+		}
 		if (y > HEIGHT) {
-			printf("Penguin removed\n");
 			inPlay = false;
 		}
 	}
+	return false;
 }

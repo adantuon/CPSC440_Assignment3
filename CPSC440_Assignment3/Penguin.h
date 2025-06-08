@@ -13,9 +13,11 @@ public:
 	void drawPenguin();
 	void startPenguin(int WIDTH, int HEIGHT);
 	void updatePenguin();
-	void collidePenguin(int WIDTH, int HEIGHT);
-	int getBoundX() { return boundx; }
-	int getBoundY() { return boundy; }
+	bool collidePenguin(int WIDTH, int HEIGHT);
+	int getBoundXL() { return boundxl; }
+	int getBoundXR() { return boundxr; }
+	int getBoundYT() { return boundyt; }
+	int getBoundYB() { return boundyb; }
 	int getX() { return x; }
 	int getY() { return y; }
 	bool getLive() { return inPlay; }
@@ -26,7 +28,9 @@ private:
 	bool inPlay;
 	bool alive;
 	int speed;
-	int boundx;
-	int boundy;
+	int boundxl;
+	int boundxr;
+	int boundyt;
+	int boundyb;
 	ALLEGRO_BITMAP *image[2];
 };

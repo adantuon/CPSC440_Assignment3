@@ -38,7 +38,9 @@ void game::runGame() {
 		Enemies[i].updatePenguin();
 	}
 	for (int i = 0; i < numEnemies; i++) {
-		Enemies[i].collidePenguin(900, 900);
+		if (Enemies[i].collidePenguin(900, 900)) {
+			game::removeLife();
+		}
 	}
 }
 
