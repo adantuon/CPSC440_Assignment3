@@ -41,12 +41,20 @@ int main() {
 	if (!al_init_ttf_addon())
 		return -1;
 
-	//PUT FONTS HERE
+	//Fonts
+	ALLEGRO_FONT *font = al_load_font("PressStart2P.ttf", 24, 0);
+	if (font == NULL) {
+		return(-1);
+	}
+	ALLEGRO_FONT *bigFont = al_load_font("PressStart2P.ttf", 64, 0);
+	if (bigFont == NULL) {
+		return(-1);
+	}
 
 	al_install_keyboard();
 	al_init_image_addon();
 	
-	game Game(numSnowballs, numEnemies);
+	game Game(numSnowballs, numEnemies, font, bigFont);
 	
 
 	eventQueue = al_create_event_queue();

@@ -12,7 +12,7 @@
 
 class game {
 	public:
-		game(int numS, int numE);
+		game(int numS, int numE, ALLEGRO_FONT *f, ALLEGRO_FONT *bf);
 		game();
 		~game();
 		void runGame();
@@ -29,5 +29,8 @@ class game {
 		int numEnemies;
 		int score;
 		int lives;
+		bool lost;
 		ALLEGRO_BITMAP *background;
+		ALLEGRO_FONT *font;
+		ALLEGRO_FONT *bigFont;
 };
