@@ -15,7 +15,7 @@ public:
 	void drawSnowball();
 	bool fireSnowball(cannon &Cannon);
 	void updateSnowball(int WIDTH, int HEIGHT);
-	void collideSnowball(penguin penguins[], int cSize);
+	bool collideSnowball(penguin penguins[], int cSize);
 private:
 	int x;
 	int y;

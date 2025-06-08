@@ -88,7 +88,9 @@ void game::runGame(bool *keys) {
 
 		//Check for collision on snowballs
 		for (int i = 0; i < numSnowballs; i++) {
-			Snowball[i].collideSnowball(Enemies, -1);
+			if (Snowball[i].collideSnowball(Enemies, 10)) {
+				score++;
+			}
 		}
 
 		//Check for collisions on Penguins

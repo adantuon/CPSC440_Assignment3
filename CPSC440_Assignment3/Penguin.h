@@ -20,8 +20,9 @@ public:
 	int getBoundYB() { return boundyb; }
 	int getX() { return x; }
 	int getY() { return y; }
-	bool getLive() { return inPlay; }
-	void setLive(bool l) { inPlay = l; }
+	bool getStatus() { return inPlay; }
+	bool getLive() { return alive; }
+	void setLive(bool l) { alive = l; }
 private:
 	int x;
 	int y;

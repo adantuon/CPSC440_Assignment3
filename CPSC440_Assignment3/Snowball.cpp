@@ -51,7 +51,26 @@ void snowball::updateSnowball(int WIDTH, int HEIGHT) {
 	}
 }
 
-void snowball::collideSnowball(penguin penguins[], int cSize) {
-	
+bool snowball::collideSnowball(penguin penguins[], int cSize) {
+	if (live) {
+		for (int i = 0; i < cSize; i++) {
+			if (penguins[i].getStatus()) {
+				if (penguins[i].getLive()) {
+					int penguinLeftBound = penguins[i].getX() + penguins[i].getBoundXL();
+					int penguinRightBound = penguins[i].getX() + penguins[i].getBoundXR();
+					int penguinTopBound = penguins[i].getY() + penguins[i].getBoundYT();
+					int penguinBottomBound = penguins[i].getY() + penguins[i].getBoundYB();
+
+					//Snowball must be fully in the penguin's hitbox
+					if ((x >= penguinLeftBound) && ((x + boundx) <= penguinRightBound) && (y >= penguinTopBound) && ((y + boundy) <= penguinBottomBound)) {
+						penguins[i].setLive(false);
+						live = false;
+						return true;
+					}
+				}
+			}
+		}
+	}
+	return false;
 	
 }
