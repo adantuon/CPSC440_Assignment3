@@ -1,13 +1,14 @@
 //Aiden D'Antuono
 
 #include "GameLogic.h"
-#include <stdio.h>
 
+//Deconstructor
 game::~game() {
 	al_destroy_bitmap(background);
 	al_destroy_bitmap(igloo);
 }
 
+//Default Constructor
 game::game() {
 	game::numSnowballs = 0;
 	game::numEnemies = 0;
@@ -24,6 +25,7 @@ game::game() {
 	game::lost = false;
 }
 
+//Constructor
 game::game(int numS, int numE, ALLEGRO_FONT *f, ALLEGRO_FONT *bf) {
 	game::numSnowballs = numS;
 	game::numEnemies = numE;
@@ -42,6 +44,7 @@ game::game(int numS, int numE, ALLEGRO_FONT *f, ALLEGRO_FONT *bf) {
 	game::lost = false;
 }
 
+//Runs game logic
 void game::runGame(bool *keys) {
 	if (!lost) {
 		//Handle the cooldown on firing the cannon
@@ -107,6 +110,7 @@ void game::runGame(bool *keys) {
 	}
 }
 
+//Draws game
 void game::drawGame() {
 	al_draw_bitmap(background, 0, 0, 0);
 	Cannon.drawCannon();

@@ -12,6 +12,7 @@
 
 int main() {
 	
+	//Variables
 	const int WIDTH = 900;
 	const int HEIGHT = 900;
 	const int numSnowballs = 5;
@@ -27,6 +28,7 @@ int main() {
 	ALLEGRO_EVENT_QUEUE *eventQueue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
 
+	//Allegro initialization
 	if (!al_init())
 		return -1;
 
@@ -57,9 +59,11 @@ int main() {
 	game Game(numSnowballs, numEnemies, font, bigFont);
 	
 
+	//Create event queue and timer
 	eventQueue = al_create_event_queue();
 	timer = al_create_timer(1.0 / FPS);
 
+	//register event sources
 	al_register_event_source(eventQueue, al_get_display_event_source(display));
 	al_register_event_source(eventQueue, al_get_keyboard_event_source());
 	al_register_event_source(eventQueue, al_get_timer_event_source(timer));
@@ -67,6 +71,7 @@ int main() {
 	srand(time(NULL));
 	al_start_timer(timer);
 	
+	//Game loop
 	while (!exit) {
 		ALLEGRO_EVENT event;
 		al_wait_for_event(eventQueue, &event);
@@ -112,5 +117,9 @@ int main() {
 			al_flip_display();
 		}
 	}
-	
+
+	al_destroy_event_queue(eventQueue);
+	al_destroy_timer(timer);
+	al_destroy_display(display);
+	return 0;
 }

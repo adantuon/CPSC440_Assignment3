@@ -2,12 +2,13 @@
 
 #include "Snowball.h"
 #include <cmath>
-#include <stdio.h>
 
+//Destructor
 snowball::~snowball() {
 	al_destroy_bitmap(image);
 }
 
+//Constructor
 snowball::snowball() {
 	snowball::image = al_load_bitmap("Snowball.png");
 	live = false;
@@ -16,12 +17,14 @@ snowball::snowball() {
 	boundy = 16;
 }
 
+//Draw the snowball at correct position
 void snowball::drawSnowball() {
 	if (live) {
 		al_draw_bitmap(image, x, y, 0);
 	}
 }
 
+//Fire snowball returns true if successfully fired
 bool snowball::fireSnowball(cannon &Cannon) {
 	if (!live) {
 		float angle = Cannon.getAngle();
@@ -39,6 +42,7 @@ bool snowball::fireSnowball(cannon &Cannon) {
 	return false;
 }
 
+//Updates snowball position and if outside display then set live to false
 void snowball::updateSnowball(int WIDTH, int HEIGHT) {
 	if (live) {
 		x += speedx;
@@ -51,6 +55,7 @@ void snowball::updateSnowball(int WIDTH, int HEIGHT) {
 	}
 }
 
+//Check if snowball collides with a penguin and kill penguin if so. Returns true if hit a penguin
 bool snowball::collideSnowball(penguin penguins[], int cSize) {
 	if (live) {
 		for (int i = 0; i < cSize; i++) {
