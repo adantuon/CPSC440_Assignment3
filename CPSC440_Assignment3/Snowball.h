@@ -12,16 +12,18 @@ class snowball
 public:
 	snowball();
 	~snowball();
-	void DrawArrow();
-	void FireArrow(cannon &Cannon);
-	void UpdateArrow(int WIDTH, int HEIGHT);
-	void CollideArrow(penguin penguins[], int cSize);
+	void drawSnowball();
+	bool fireSnowball(cannon &Cannon);
+	void updateSnowball(int WIDTH, int HEIGHT);
+	void collideSnowball(penguin penguins[], int cSize);
 private:
 	int x;
 	int y;
 	bool live;
 	int speed;
+	int speedx;
+	int speedy;
 	int boundx;
 	int boundy;
-	ALLEGRO_BITMAP *image[2];
+	ALLEGRO_BITMAP *image;
 };

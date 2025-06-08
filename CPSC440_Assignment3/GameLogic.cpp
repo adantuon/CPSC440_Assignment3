@@ -1,6 +1,7 @@
 //Aiden D'Antuono
 
 #include "GameLogic.h"
+#include <stdio.h>
 
 game::~game() {
 	al_destroy_bitmap(background);
@@ -18,6 +19,8 @@ game::game() {
 	game::igloo = al_load_bitmap("BackgroundIgloo.png");
 	game::lives = 5;
 	game::score = 0;
+	game::fireDelay = 30;
+	game::fireCooldown = 30;
 	game::lost = false;
 }
 
@@ -34,32 +37,68 @@ game::game(int numS, int numE, ALLEGRO_FONT *f, ALLEGRO_FONT *bf) {
 	game::igloo = al_load_bitmap("BackgroundIgloo.png");
 	game::lives = 5;
 	game::score = 0;
+	game::fireDelay = 30;
+	game::fireCooldown = 30;
 	game::lost = false;
 }
 
 void game::runGame(bool *keys) {
 	if (!lost) {
+		//Handle the cooldown on firing the cannon
+		if (fireDelay != fireCooldown) {
+			fireCooldown++;
+		}
+
+		//Rotate the cannon left if necessary
 		if (keys[0]) {
 			Cannon.rotateLeft();
 		}
+
+		//Rotate the cannon right if necessary
 		if (keys[1]) {
 			Cannon.rotateRight();
 		}
-		if (keys[1]) {
 
+		//Fire one snowball if the cannon is capable of firing
+		if (keys[2]) {
+			if (fireDelay == fireCooldown) {
+				for (int i = 0; i < numSnowballs; i++) {
+					if (Snowball[i].fireSnowball(Cannon)) {
+						fireCooldown = 0;
+						break;
+					}
+				}
+			}
 		}
+
+		//Update snowballs
+		for (int i = 0; i < numSnowballs; i++) {
+			Snowball[i].updateSnowball(900, 900);
+		}
+
+		//Try to start a penguin
 		for (int i = 0; i < numEnemies; i++) {
 			Enemies[i].startPenguin(900, 900);
 		}
+
+		//Update penguins
 		for (int i = 0; i < numEnemies; i++) {
 			Enemies[i].updatePenguin();
 		}
+
+		//Check for collision on snowballs
+		for (int i = 0; i < numSnowballs; i++) {
+			Snowball[i].collideSnowball(Enemies, -1);
+		}
+
+		//Check for collisions on Penguins
 		for (int i = 0; i < numEnemies; i++) {
 			if (Enemies[i].collidePenguin(900, 900)) {
 				game::removeLife();
 			}
 		}
 
+		//End game if necessary
 		if (lives == 0) {
 			lost = true;
 		}
@@ -73,6 +112,9 @@ void game::drawGame() {
 
 	for (int i = 0; i < numEnemies; i++) {
 		Enemies[i].drawPenguin();
+	}
+	for (int i = 0; i < numSnowballs; i++) {
+		Snowball[i].drawSnowball();
 	}
 
 	if (!lost) {

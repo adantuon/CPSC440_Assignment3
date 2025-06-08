@@ -71,7 +71,11 @@ int main() {
 		ALLEGRO_EVENT event;
 		al_wait_for_event(eventQueue, &event);
 
-		if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+		if (event.type == ALLEGRO_EVENT_TIMER) {
+			draw = true;
+			Game.runGame(keys);
+		}
+		else if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
 			exit = true;
 		}
 		else if (event.type == ALLEGRO_EVENT_KEY_DOWN) {
@@ -99,10 +103,6 @@ int main() {
 				keys[SPACE] = false;
 				break;
 			}
-		}
-		else if (event.type == ALLEGRO_EVENT_TIMER) {
-			draw = true;
-			Game.runGame(keys);
 		}
 
 		if (draw) {

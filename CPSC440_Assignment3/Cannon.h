@@ -13,6 +13,7 @@ public:
 	void drawCannon();
 	void rotateLeft();
 	void rotateRight();
+	float getAngle() { return angle; };
 private:
 	ALLEGRO_BITMAP *image;
 	float angle;

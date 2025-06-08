@@ -30,6 +30,8 @@ class game {
 		int score;
 		int lives;
 		bool lost;
+		int fireDelay;
+		int fireCooldown;
 		ALLEGRO_BITMAP *background;
 		ALLEGRO_BITMAP *igloo;
 		ALLEGRO_FONT *font;
