@@ -74,9 +74,35 @@ int main() {
 		if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
 			exit = true;
 		}
+		else if (event.type == ALLEGRO_EVENT_KEY_DOWN) {
+			switch (event.keyboard.keycode) {
+				case ALLEGRO_KEY_LEFT:
+					keys[LEFT] = true;
+					break;
+				case ALLEGRO_KEY_RIGHT:
+					keys[RIGHT] = true;
+					break;
+				case ALLEGRO_KEY_SPACE:
+					keys[SPACE] = true;
+					break;
+			}
+		}
+		else if (event.type == ALLEGRO_EVENT_KEY_UP) {
+			switch (event.keyboard.keycode) {
+			case ALLEGRO_KEY_LEFT:
+				keys[LEFT] = false;
+				break;
+			case ALLEGRO_KEY_RIGHT:
+				keys[RIGHT] = false;
+				break;
+			case ALLEGRO_KEY_SPACE:
+				keys[SPACE] = false;
+				break;
+			}
+		}
 		else if (event.type == ALLEGRO_EVENT_TIMER) {
 			draw = true;
-			Game.runGame();
+			Game.runGame(keys);
 		}
 
 		if (draw) {

@@ -4,6 +4,7 @@
 
 game::~game() {
 	al_destroy_bitmap(background);
+	al_destroy_bitmap(igloo);
 }
 
 game::game() {
@@ -14,6 +15,7 @@ game::game() {
 	game::Enemies = NULL;
 
 	game::background = al_load_bitmap("Background.png");
+	game::igloo = al_load_bitmap("BackgroundIgloo.png");
 	game::lives = 5;
 	game::score = 0;
 	game::lost = false;
@@ -29,13 +31,23 @@ game::game(int numS, int numE, ALLEGRO_FONT *f, ALLEGRO_FONT *bf) {
 	game::Enemies = new penguin[numEnemies];
 
 	game::background = al_load_bitmap("Background.png");
+	game::igloo = al_load_bitmap("BackgroundIgloo.png");
 	game::lives = 5;
 	game::score = 0;
 	game::lost = false;
 }
 
-void game::runGame() {
+void game::runGame(bool *keys) {
 	if (!lost) {
+		if (keys[0]) {
+			Cannon.rotateLeft();
+		}
+		if (keys[1]) {
+			Cannon.rotateRight();
+		}
+		if (keys[1]) {
+
+		}
 		for (int i = 0; i < numEnemies; i++) {
 			Enemies[i].startPenguin(900, 900);
 		}
@@ -56,6 +68,8 @@ void game::runGame() {
 
 void game::drawGame() {
 	al_draw_bitmap(background, 0, 0, 0);
+	Cannon.drawCannon();
+	al_draw_bitmap(igloo, 0, 0, 0);
 
 	for (int i = 0; i < numEnemies; i++) {
 		Enemies[i].drawPenguin();

@@ -15,7 +15,7 @@ class game {
 		game(int numS, int numE, ALLEGRO_FONT *f, ALLEGRO_FONT *bf);
 		game();
 		~game();
-		void runGame();
+		void runGame(bool *keys);
 		void drawGame();
 		int getScore() { return score; }
 		void addScore() { score++; }
@@ -31,6 +31,7 @@ class game {
 		int lives;
 		bool lost;
 		ALLEGRO_BITMAP *background;
+		ALLEGRO_BITMAP *igloo;
 		ALLEGRO_FONT *font;
 		ALLEGRO_FONT *bigFont;
 };

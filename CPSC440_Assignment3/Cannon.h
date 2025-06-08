@@ -15,4 +15,5 @@ public:
 	void rotateRight();
 private:
 	ALLEGRO_BITMAP *image;
+	float angle;
 };
