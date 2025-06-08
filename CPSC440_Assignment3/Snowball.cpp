@@ -43,15 +43,15 @@ void snowball::updateSnowball(int WIDTH, int HEIGHT) {
 	if (live) {
 		x += speedx;
 		y -= speedy;
+		if (live) {
+			if (x > WIDTH || x < 0 - boundx || y > HEIGHT || y < 0 - boundy) {
+				live = false;
+			}
+		}
 	}
 }
 
 void snowball::collideSnowball(penguin penguins[], int cSize) {
-	if (live) {
-		if (x > 900 || x < 0 - boundx || y > 900 || y < 0 - boundy) {
-			printf("Snowball Deleted\n");
-			live = false;
-		}
-	}
+	
 	
 }
